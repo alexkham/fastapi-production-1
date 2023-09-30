@@ -17,7 +17,7 @@ jobs:
         run: mkdir -p $HOME/.ssh
 
       - name: Setup SSH key
-        run: echo "${{ secrets.SSH_KEY }}" > $HOME/.ssh/id_rsa && chmod 600 $HOME/.ssh/id_rsa
+        run: echo "${{ secrets.SSH_KEY }}" > $HOME/.ssh/id_rsa && chmod 400 $HOME/.ssh/id_rsa
 
       - name: Add server to known hosts
         run: ssh-keyscan ${{ secrets.SERVER_IP }} >> $HOME/.ssh/known_hosts
