@@ -13,6 +13,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Create SSH directory
+        run: mkdir -p $HOME/.ssh
+
       - name: Setup SSH key
         run: echo "${{ secrets.SSH_KEY }}" > $HOME/.ssh/id_rsa && chmod 600 $HOME/.ssh/id_rsa
 
