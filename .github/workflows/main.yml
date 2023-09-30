@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up SSH Agent
-        uses: webfactory/ssh-agent@v0.5
+        uses: crazy-max/ghaction-import-gpg@v3
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
@@ -24,6 +24,5 @@ jobs:
       - name: SSH into Server and Execute Script
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "bash -s" < /var/www/154.56.46.133/fastapi-production-1/deploy.sh
-        # Replace 'user', 'your-server-ip', and 'path/to/your-script.sh' with your server details and script path
         env:
           SSH_AUTH_SOCK: ${{ steps.set_up_ssh_agent.outputs.ssh-auth-sock }}
