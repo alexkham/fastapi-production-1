@@ -30,4 +30,4 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          script: bash /var/www/154.56.46.133/fastapi-production-1/deploy.sh
+          script: cat /var/www/154.56.46.133/fastapi-production-1/deploy.sh
