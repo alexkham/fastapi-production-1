@@ -1,0 +1,29 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH Agent
+        uses: webfactory/ssh-agent@v0.5
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan ${{ secrets.SERVER_IP }} >> $HOME/.ssh/known_hosts
+
+      - name: SSH into Server and Execute Script
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "bash -s" < /var/www/154.56.46.133/fastapi-production-1/deploy.sh
+        # Replace 'user', 'your-server-ip', and 'path/to/your-script.sh' with your server details and script path
+        env:
+          SSH_AUTH_SOCK: ${{ steps.set_up_ssh_agent.outputs.ssh-auth-sock }}
