@@ -7,6 +7,8 @@ APP_MODULE="main:app"
 HOST="0.0.0.0"
 PORT="8000"
 
+fuser -k 8000/tcp
+
 # Activate the virtual environment
 source "$VENV_DIR/bin/activate"
 
@@ -14,4 +16,4 @@ source "$VENV_DIR/bin/activate"
 cd "$PROJECT_DIR"
 
 # Start the FastAPI app with Uvicorn
-uvicorn $APP_MODULE --host $HOST --port $PORT
+nohup uvicorn $APP_MODULE --host $HOST --port $PORT > /dev/null 2>&1 &
