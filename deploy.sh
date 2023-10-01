@@ -15,5 +15,8 @@ source "$VENV_DIR/bin/activate"
 # Change directory to the project directory
 cd "$PROJECT_DIR"
 
+# Pull the code changes
+git pull origin main
+
 # Start the FastAPI app with Uvicorn
 nohup uvicorn $APP_MODULE --host $HOST --port $PORT > /dev/null 2>&1 &
