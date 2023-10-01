@@ -32,4 +32,4 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /var/www/154.56.46.133/fastapi-production-1
-            ./deploy.sh
+            bash /deploy.sh
