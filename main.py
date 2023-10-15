@@ -1,8 +1,12 @@
 from fastapi import FastAPI
-from router import basic_math
+import routers
+from routers import basic
+
+
+
 
 app = FastAPI()
-app.include_router(basic_math.router)
+app.include_router(routers.basic.router)
 
 
 @app.get("/")
