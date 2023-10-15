@@ -1,6 +1,8 @@
 from fastapi import FastAPI
+from router import basic_math
 
 app = FastAPI()
+app.include_router(basic_math.router)
 
 
 @app.get("/")
